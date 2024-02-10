@@ -1,0 +1,114 @@
+<section>
+    <form 
+    fxLayout="column" 
+    fxLayoutAlign="center center" 
+    #f="ngForm" 
+    (ngSubmit)="onSubmit(f)"
+    fxLayoutGap="10px">
+
+        <mat-form-field>
+            <input 
+                type="email" 
+                matInput 
+                placeholder="Your email" 
+                ngModel
+                required
+                email
+                #emailInput="ngModel" 
+                name="email"
+            >
+            <mat-error *ngIf="emailInput.hasError('required')">field should not be empty</mat-error>
+            <mat-error *ngIf="!emailInput.hasError('required')">Pleas use the correct email format</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field>
+            <input 
+                type="text" 
+                matInput 
+                placeholder="Your name" 
+                ngModel
+                required
+                #nameInput="ngModel" 
+                name="name"
+            >
+        </mat-form-field>
+
+        <mat-form-field>
+            <input 
+                type="text" 
+                matInput 
+                placeholder="Your surname" 
+                ngModel
+                required
+                #surnameInput="ngModel" 
+                name="surname"
+            >
+        </mat-form-field>
+
+        <mat-form-field hintLabel="please enter minimum 8 characters">
+            <input 
+                type="password" 
+                matInput 
+                placeholder="Your password" 
+                ngModel name="password"
+                required
+                minlength="8"
+                #passInput="ngModel"
+            >
+            <mat-hint align="end">{{ passInput.value?.length }} / 8</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input 
+                type="text" 
+                matInput 
+                placeholder="Your address" 
+                ngModel
+                required
+                #addressInput="ngModel" 
+                name="address"
+            >
+        </mat-form-field>
+
+        <mat-form-field>
+            <input
+                matInput
+                placeholder="Your date of birth"
+                [matDatepicker]="picker"
+                ngModel
+                name="birthDate"
+                required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select  name="favorites" ngModel placeholder="Your favorites" multiple>
+                <mat-option *ngFor="let fav of favsOptions" [value]="fav">{{fav}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <button 
+            type="submit" 
+            mat-raised-button 
+            color="primary" 
+            [disabled]="f.invalid">
+            Submit
+        </button>
+
+
+        <mat-checkbox
+            color="primary"
+            ngModel
+            name="acceptance"
+            required>
+            I accept the terms and conditions of use
+        </mat-checkbox>
+
+            <!-- opciono, tekstualni link ka komponenti za prijavu -->
+        <mat-label *ngIf="errorExists">{{ errorText }}</mat-label>
+        <a routerLink="/login">Go back to login page.</a>
+
+    </form>
+</section>

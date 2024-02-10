@@ -1,0 +1,16 @@
+.sidebar {
+    /* width: 200px; */
+    height: 50px;
+}
+
+*{
+    box-sizing: border-box;
+}
+.example-card {
+    margin: 15px;
+}
+
+mat-card {
+    /* height: 300px; */
+    width: 300px;
+}

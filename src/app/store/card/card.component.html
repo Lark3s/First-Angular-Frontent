@@ -1,0 +1,30 @@
+
+<mat-card fxFlex fxLayout="column">
+  
+    <mat-card-header fxFlex fxLayout="row" fxLayoutAlign="space-between baseline" >
+      <mat-card-title class="mat-card-title">{{this.data.name}}</mat-card-title>
+      <button mat-raised-button [mat-dialog-close]="true">
+        <mat-icon matListIcon>close</mat-icon>
+      </button>
+    </mat-card-header>
+    <br>
+    <img mat-card-image [src]="this.data.img">
+  
+    <mat-card-content>
+      <div class="card-text-content">
+       {{this.data.description}}
+      </div>
+      <p>Likes: {{data.likes}}</p>
+      <br>
+      <strong>Comments:</strong>
+      <div *ngFor="let com of komentari">
+        <strong>{{"User " + com.userId}}</strong>
+        <p>{{com.comment}}</p>
+      </div>
+    </mat-card-content>
+  
+    <mat-card-actions fxLayoutAlign="center center">
+      <button mat-raised-button [disabled]="isDisabled()" color="warn" (click)="reserve(this.data.id)">{{'RESERVE: ' + this.data.price + ' RSD'}}</button>
+    </mat-card-actions>
+  
+  </mat-card>

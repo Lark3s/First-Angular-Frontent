@@ -1,0 +1,103 @@
+<div class="data" fxLayout="column" fxFlex fxLayoutAlign="start center">
+
+<button mat-icon-button fxLayoutAlign="center center">
+    <mat-icon matListIcon *ngIf="this.userService.currentUser!.id == this.userService.currentUser!.id" (click)="this.isEditing = !this.isEditing">edit</mat-icon>
+</button>
+
+<form fxFlex="30" fxLayout="column" fxLayoutGap="3vh" #editForm="ngForm" (ngSubmit)="finishEditing(editForm)">
+<mat-card fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1vw">
+
+    <div fxLayout="column" *ngIf="!this.isEditing">
+        <mat-card-subtitle>Email</mat-card-subtitle>
+        <span>{{ this.userService.currentUser!.email }}</span>
+    </div>
+    <mat-form-field *ngIf="this.isEditing">
+    <input matInput type="email" placeholder="your email" name="email" [(ngModel)]="this.userService.currentUser!.email" email required #emailInput="ngModel">
+    </mat-form-field>
+</mat-card>
+
+
+
+<mat-card fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1vw">
+
+    <div fxLayout="column" *ngIf="!this.isEditing">
+        <mat-card-subtitle>Name</mat-card-subtitle>
+        <span>{{ this.userService.currentUser!.name}}</span>
+    </div>
+    <mat-form-field *ngIf="this.isEditing">
+    <input matInput type="text" placeholder="your name" name="name" [(ngModel)]="this.userService.currentUser!.name" required #nameInput="ngModel">
+    </mat-form-field>
+</mat-card>
+
+
+
+<mat-card fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1vw">
+
+    <div fxLayout="column" *ngIf="!this.isEditing">
+        <mat-card-subtitle>Surname</mat-card-subtitle>
+        <span>{{ this.userService.currentUser!.surname }}</span>
+    </div>
+    <mat-form-field *ngIf="this.isEditing">
+    <input matInput type="text" placeholder="your surname" name="surname" [(ngModel)]="this.userService.currentUser!.surname"  required #surnameInput="ngModel">
+    </mat-form-field>
+</mat-card>
+
+
+
+<mat-card fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1vw">
+
+    <div fxLayout="column" *ngIf="!this.isEditing">
+        <mat-card-subtitle>Password</mat-card-subtitle>
+        <span>{{ this.userService.currentUser!.password }}</span>
+    </div>
+    <mat-form-field *ngIf="this.isEditing">
+    <input matInput type="password" minlength="8" placeholder="your password" name="password" [(ngModel)]="this.userService.currentUser!.password" password required #passwordInput="ngModel">
+    <mat-hint align="end">{{ this.userService.currentUser!.password.length }} / 8</mat-hint>
+    </mat-form-field>
+</mat-card>
+
+
+
+<mat-card fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1vw">
+
+    <div fxLayout="column" *ngIf="!this.isEditing">
+        <mat-card-subtitle>Address</mat-card-subtitle>
+        <span>{{ this.userService.currentUser!.address }}</span>
+    </div>
+    <mat-form-field *ngIf="this.isEditing">
+    <input matInput type="text" placeholder="your address" name="address" [(ngModel)]="this.userService.currentUser!.address"  required #addressInput="ngModel">
+    </mat-form-field>
+</mat-card>
+
+
+<mat-card fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1vw">
+
+    <div fxLayout="column" *ngIf="!this.isEditing">
+        <mat-card-subtitle>Date</mat-card-subtitle>
+        <span>{{ this.userService.currentUser!.date }}</span>
+    </div>
+    <mat-form-field *ngIf="this.isEditing">
+
+    <input matInput placeholder="Your date of birth" [matDatepicker]="picker" [(ngModel)]="this.userService.currentUser!.date" name="birthDate" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+</mat-card>
+
+<mat-card fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1vw">
+
+    <div fxLayout="column" *ngIf="!this.isEditing">
+        <mat-card-subtitle>Favorites</mat-card-subtitle>
+        <span>{{ this.userService.currentUser!.favorites }}</span>
+    </div>
+    <mat-form-field *ngIf="this.isEditing">
+        <mat-select [formControl]="favs" [(ngModel)]="this.userService.currentUser!.favorites" multiple>
+            <mat-option *ngFor="let fav of favsOptions" [value]="fav">{{fav}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</mat-card>
+
+<button *ngIf="this.isEditing" mat-raised-button type="submit" color="primary">Save us</button>
+</form>
+
+</div>

@@ -1,0 +1,40 @@
+
+
+<div fxLayout="column">
+   <div class="sidebar" fxFlex fxLayout="row" fxLayoutAlign="space-around center" cdkScrollable matSort (matSortChange)="doFilter($any($event).value)">
+      <div fxFlex fxLayout="row" fxLayoutAlign="space-around center">
+        <strong>Sort:</strong>
+        <p mat-sort-header="name">Name</p>
+        <p mat-sort-header="price">Price</p>
+      </div>
+      <div fxLayout="row" fxFlex="30" fxLayoutAlign="space-around center">
+        <strong>Search: </strong>&nbsp;&nbsp;
+        <input  matInput type="text" (keyup)="doSearch($any($event.target).value)" placeholder="Filter">
+      </div>
+    </div>
+  
+    <mat-divider ></mat-divider>
+
+    <div fxFlex fxLayoutAlign="space-around center" class="card" fxLayout="row wrap"  >
+      <mat-card fxFlex="nogrow" class="example-card" *ngFor="let card of obs | async">
+          
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{card.name}}</mat-card-title>
+            <mat-card-subtitle >{{card.type}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image [src]="card.img" (click)="openCard(card.id)">
+          <mat-card-content>
+            <p>{{card.price + ' RSD'}}</p>
+          </mat-card-content>
+          <mat-card-actions fxLayoutAlign="center center">
+            <button mat-raised-button color="warn" (click)="openCard(card.id)" >ABOUT</button>
+          </mat-card-actions>
+      </mat-card>
+    </div>
+</div>
+
+
+<mat-paginator [pageSizeOptions]="[8, 10, 12, 14, 16]"></mat-paginator>
+
+
