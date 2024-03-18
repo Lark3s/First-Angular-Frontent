@@ -1,3 +1,2 @@
 # First-Angular-Frontent
-My first frontend in Angular using Anglar Material. It was made for the purposes of a university project.
-It definitely has some questionable design decisions, but it had a deadline, so "if it's not broken, don't fix it".
+My first frontend in Angular using Anglar Material. It was made for the purposes of a university project. It's a prototype/demo of a website for travel ticket reservations with the sole focus on the frontend layer, because of that it does not have a working backend and all the data is wiped after a full page refresh, but it was made to show I can make a functioning frontend for a medium complexity app.
